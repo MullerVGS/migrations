@@ -1,6 +1,12 @@
+import Config from "./src/config/Config";
 import RunMigrations from "./src/RunMigrations";
 
 (async () => {
+    if(Config.database){
+        console.log("Conectando no banco de dados com as credenciais:");
+        console.table(Config.database);
+    }
+
     const readline = require('readline').createInterface({
         input: process.stdin,
         output: process.stdout,

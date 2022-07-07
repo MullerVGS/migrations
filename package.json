@@ -1,13 +1,13 @@
 {
   "name": "db-migration",
-  "version": "1.9.2",
+  "version": "1.9.4",
   "description": "",
   "scripts": {
     "migration": "ts-node-dev migration.ts",
+    "migration:staging": "set NODE_ENV=staging&&ts-node-dev migration.ts",
+    "migration:prod": "set NODE_ENV=prod&&ts-node-dev migration.ts",
     "public": "ts-node-dev public.ts",
-    "schema": "ts-node-dev schema.ts",
-    "prd": "node -r tsconfig-paths/register -r ts-node ./dist/server.js",
-    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist"
+    "schema": "ts-node-dev schema.ts"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
