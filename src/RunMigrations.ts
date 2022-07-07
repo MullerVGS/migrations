@@ -46,7 +46,7 @@ export default class RunMigrations {
         return;
     }
 
-    private async getMigrationsToRun(): Promise<{file: string, directory: string, type:string, schema:string}[]> {
+    public async getMigrationsToRun(): Promise<{file: string, directory: string, type:string, schema:string}[]> {
         let migrationsToRun = [];
         let publicMigrations = await publicMigration.migrate.list();
         for (const migration of publicMigrations[1]) {
@@ -86,6 +86,9 @@ export default class RunMigrations {
         }
     }
 
+
+    //Rodo sempre public depois schema
+    //Rodo sompre as versoes anteriores do schema
     private orderArray(array, field) {
         array = array.sort((a, b) => {
             let aField = a[field].replace(/[a-zA-Z]/g,'');

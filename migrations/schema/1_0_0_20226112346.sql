@@ -1,2 +1,0 @@
-SET schema '$tenant$';
-

@@ -5,7 +5,6 @@ export default class CreateMigration {
 
     public async createPublicMigration() {
         let currentVersion = await this.getCurrentVersion();
-        currentVersion = currentVersion.replace(/\./g, '_');
         let migrationName = `${currentVersion}_${this.formatDate(new Date())}`;
 
         const templateTSPath = `./src/templates/public_migration.ts`;
@@ -22,7 +21,6 @@ export default class CreateMigration {
 
     public async createSchemaMigration() {
         let currentVersion = await this.getCurrentVersion();
-        currentVersion = currentVersion.replace(/\./g, '_');
         let migrationName = `${currentVersion}_${this.formatDate(new Date())}`;
 
         const templateTSPath = `./src/templates/schema_migration.ts`;
@@ -41,12 +39,20 @@ export default class CreateMigration {
     private async getCurrentVersion() {
         const packageData = await fs.readFileSync(`./package.json`, 'utf8');
         const packageJson = JSON.parse(packageData);
-        return packageJson.version;
+        let version = packageJson.version;
+        version = version.replace(/\./g, '_');
+        return version;
     }
 
 
     private formatDate(date: Date) {
-        return `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}${date.getHours()}${date.getMinutes()}`;
+        let year = date.getFullYear();
+        let month = (date.getMonth()+1).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        let hour = date.getHours().toString().padStart(2, '0');
+        let minute = date.getMinutes().toString().padStart(2, '0');
+
+        return `${year}${month}${day}${hour}${minute}`;
     }
 
     //copy file from one folder to another

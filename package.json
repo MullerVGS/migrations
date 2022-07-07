@@ -3,7 +3,9 @@
   "version": "1.9.2",
   "description": "",
   "scripts": {
-    "dev": "ts-node-dev server.ts",
+    "migration": "ts-node-dev migration.ts",
+    "public": "ts-node-dev public.ts",
+    "schema": "ts-node-dev schema.ts",
     "prd": "node -r tsconfig-paths/register -r ts-node ./dist/server.js",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist"
   },
